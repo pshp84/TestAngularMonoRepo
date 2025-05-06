@@ -1,23 +1,36 @@
-import type { Meta, StoryObj } from '@storybook/angular';
+import {moduleMetadata, Meta, StoryFn } from '@storybook/angular';
 import { ButtonComponent } from './button.component';
-import { within } from '@storybook/testing-library';
-import { expect } from '@storybook/jest';
-
-const meta: Meta<ButtonComponent> = {
+export default {
+  title: 'ui-button',
   component: ButtonComponent,
-  title: 'ButtonComponent',
-};
-export default meta;
-type Story = StoryObj<ButtonComponent>;
+  decorators:[
+    moduleMetadata({
+      imports:[],
+    }),
+  ],
+} as Meta<ButtonComponent>;
 
-export const Primary: Story = {
-  args: {},
-};
+const Template : StoryFn<ButtonComponent> = (args:ButtonComponent)=>({
+  template:'<button lib-button [type]="type"></button>',
+  props : args
+})
 
-export const Heading: Story = {
-  args: {},
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-    expect(canvas.getByText(/button works!/gi)).toBeTruthy();
-  },
-};
+export const Basic = Template.bind({})
+  Basic.args= {
+    type:'basic'
+  }
+export const Stroked = Template.bind({})
+  Stroked.args= {
+    type:'stroked'
+  }
+export const Flat = Template.bind({})
+  Flat.args= {
+    type:'flat'
+  }
+export const Raised = Template.bind({})
+  Raised.args= {
+    type:'raised'
+  }
+
+
+

@@ -1,0 +1,26 @@
+:host{
+    height: 40px;
+    padding: 0 24px;
+    font-size: 1rem;
+    border-radius: 5px;
+    box-shadow: none;
+    color: black;
+    &.rm-basic{
+        
+        background: none;
+        border: none;
+    }
+    &.rm-stroked{
+        border: 1px solid grey;
+        background: none;
+    }
+    &.rm-raised{
+        border: none;
+        background: white;
+        box-shadow: 1px 2px 5px 1px grey;
+    }
+    &.rm-flat{
+        border: none;
+        background: rgb(235, 230, 230);
+    }
+}
