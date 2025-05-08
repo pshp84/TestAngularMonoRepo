@@ -33,7 +33,7 @@ export default [
       '@angular-eslint/component-selector': [
         'error',
         {
-          type: 'selector',
+          type: '["element", "attribute"] ',
           prefix: 'lib',
           style: 'kebab-case',
         },
