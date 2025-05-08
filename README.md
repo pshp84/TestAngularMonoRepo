@@ -2,56 +2,99 @@
 
 <a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a>
 
-✨ Your new, shiny [Nx workspace](https://nx.dev) is almost ready ✨.
+✨ This workspace is build with  [Nx workspace](https://nx.dev) aims multi-angular applications and libraries ✨.
 
-[Learn more about this workspace setup and its capabilities](https://nx.dev/getting-started/tutorials/angular-monorepo-tutorial?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects) or run `npx nx graph` to visually explore what was created. Now, let's get you up to speed!
+[Learn more about this workspace setup and its capabilities](https://nx.dev/getting-started/tutorials/angular-monorepo-tutorial?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects) 
 
-## Finish your CI setup
+-To install nx workspace globally
+rum `npm install -g nx`
 
-[Click here to finish setting up your workspace!](https://cloud.nx.app/connect/01GigWKO3K)
+
+## Nx workspace overview
+-Creating Workspace 
+run `npx create-nx-workspace@latest angular-monorepo --preset=angular --strict`
+    --strict flag is used to enforce strict type checking
+    --this will require Integrated repo or standalone project one application name, bundler, stylesheet format, server side renderting, unit test runner and CI provider
+
+-Add essential Nx plugins (e.g., @nx/angular, @nx/linter, @nx/storybook, etc.).
+run `npm install --save-dev @typescript-eslint/eslint-plugin @typescript-eslint/parser`
+ 
+run `npm install --save-dev @nx/angular @nx/linter @nx/storybook`
 
 
-## Run tasks
+## Guidelines on creating new apps/libs.
+- To Create new angular app
+run `nx g @nx/angular:application apps/app-name`
+
+- To Create new angular lib
+run `nx g @nx/angular:library libs/directory-name/lib-name --standalone --buildable`
+    --buildable used to create builds
+
+or run `npx nx graph` to visually explore what was created. Now, let's get you up to speed!
+
+## Naming Conventions
+- Libraries: `domain/type-name` (e.g., `feature/auth`)
+- Apps: Simple lowercase names (e.g., `app-one`, `app-two`)
+- Types:
+  - `ui`: Presentational components
+  - `feature`: Smart components or pages
+  - `data-access`: Services, state management
+  - `shared`: Pure functions or helpers
+
+
+
+## Developer Commands
 
 To run the dev server for your app, use:
 
 ```sh
+-To Serve App
+
+run `npx nx serve app-name`
 npx nx serve app-one
 ```
 
 To create a production bundle:
 
 ```sh
+run `npx nx build app-name`
+run `npx nx build lib-name`
 npx nx build app-one
+npx nx build auth
 ```
 
+
+-To Lint App or Lib
+run `npx nx lint app-name`
+run `npx nx lint lib-name`
+
+ 
 To see all available targets to run for a project, run:
 
 ```sh
 npx nx show project app-one
 ```
 
+To run affected project
+```sh
+npx nx affected -t build test lint
+```
+
+## Architectural boundaries documentation
+This repo enforces strict boundaries using Nx’s `enforce-module-boundaries` rule.
+
+- Each domain has its own folder in `libs/`
+- Code in `feature` libs may use `data-access` or `ui` from the same domain
+- Cross-domain access is restricted unless explicitly allowed in `nx.json`
+
+> See `nx.json` > `projects` and `dependenciesConstrains` for allowed dependencies
+
+
+
 These targets are either [inferred automatically](https://nx.dev/concepts/inferred-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) or defined in the `project.json` or `package.json` files.
 
 [More about running tasks in the docs &raquo;](https://nx.dev/features/run-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
 
-## Add new projects
-
-While you could add new projects to your workspace manually, you might want to leverage [Nx plugins](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) and their [code generation](https://nx.dev/features/generate-code?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) feature.
-
-Use the plugin's generator to create new projects.
-
-To generate a new application, use:
-
-```sh
-npx nx g @nx/angular:app demo
-```
-
-To generate a new library, use:
-
-```sh
-npx nx g @nx/angular:lib mylib
-```
 
 You can use `npx nx list` to get a list of installed plugins. Then, run `npx nx list <plugin-name>` to learn about more specific capabilities of a particular plugin. Alternatively, [install Nx Console](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) to browse plugins and generators in your IDE.
 

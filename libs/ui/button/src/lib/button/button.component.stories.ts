@@ -11,7 +11,7 @@ export default {
 } as Meta<ButtonComponent>;
 
 const Template : StoryFn<ButtonComponent> = (args:ButtonComponent)=>({
-  template:'<button lib-button [type]="type"></button>',
+  template:'<button lib-button [type]="type">Button Text</button>',
   props : args
 })
 
