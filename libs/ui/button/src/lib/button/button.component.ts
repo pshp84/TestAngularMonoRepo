@@ -16,7 +16,7 @@ import { CommonModule } from '@angular/common';
 })
 
 export class ButtonComponent{
-  @Input() type : 'flat' | 'basic' | 'raised' | 'stroked' = 'basic' 
+  @Input() type : 'flat' | 'basic' | 'raised' | 'stroked' = 'raised' 
 
   constructor(){}
   

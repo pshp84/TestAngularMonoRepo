@@ -1,0 +1,18 @@
+
+.box{
+    width: 15%;
+    float: left;
+    text-align: center;
+    height: auto;
+    padding: 20px;
+    background-color:white
+}
+
+.box img{
+    width: 100%;
+}
+
+.box a{
+    text-decoration: none;
+    color: black;
+}
